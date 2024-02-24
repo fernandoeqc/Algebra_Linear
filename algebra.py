@@ -12,7 +12,8 @@ class Vector:
     def __add__(self, other):
         # verifica se é a mesma dimensão
         if self.dim != other.dim:
-            raise Exception('Os objetos não são do mesmo tamanho ' + str(self.dim) + ' != ' + str(other.dim))
+            raise Exception('Os objetos não são do mesmo tamanho ' +
+                            str(self.dim) + ' != ' + str(other.dim))
 
         new_vector = Vector(self.dim, [0] * self.dim)
         for index in range(self.dim):
@@ -30,4 +31,20 @@ class Matriz:
 
 
 class LinearAlgebra:
-    pass
+    def transpose():
+        pass
+
+    def sum():
+        pass
+
+    def times():
+        pass
+
+    def dot():
+        pass
+
+    def gauss():
+        pass
+
+    def solve():
+        pass
