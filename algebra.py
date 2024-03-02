@@ -27,7 +27,21 @@ class Vector:
 
 
 class Matriz:
-    pass
+    def __init__(self, linha, coluna, matrizelementos):
+        self.rows = linha
+        self.cols = coluna
+        self.elements = matrizelementos
+
+    def get(self, i, j):
+        return self.elements[(i-1) * self.rows + (j-1)]
+
+    def set(self, i, j, value):
+        if i < 1 or i > self.rows:
+            raise Exception('Essa matriz não possui a linha ' + i)
+        if j < 1 or j > self.cols:
+            raise Exception('Essa matriz não possui a coluna ' + j)
+
+        self.elements[(i-1) * self.rows + (j-1)] = value
 
 
 class LinearAlgebra:
