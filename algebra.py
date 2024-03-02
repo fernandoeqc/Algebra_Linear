@@ -4,10 +4,12 @@ class Vector:
         self.elements = elements
 
     def get(self, index: int) -> int:
-        return self.elements[index]
+        return self.elements[index - 1]
 
-    def set(self, index: int, value):
-        self.elements[index] = value
+    def set(self, index, value):
+        if index < 1 or index > self.dim:
+            raise Exception('Esse vetor não possui o indice ' + index)
+        self.elements[index - 1] = value
 
     def __add__(self, other):
         # verifica se é a mesma dimensão
