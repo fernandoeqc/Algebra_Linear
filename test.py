@@ -1,5 +1,5 @@
 import unittest
-from algebra import Matrix
+from algebra import Matrix, Vector
 
 
 class TestMatrix(unittest.TestCase):
@@ -35,6 +35,29 @@ class TestMatrix(unittest.TestCase):
         self.assertEqual(matrix.get(1, 1), 1)
         matrix.set(1, 1, 2)
         self.assertEqual(matrix.get(1, 1), 2)
+
+
+class TestVector(unittest.TestCase):
+    def test_create(self):
+        elements = [3, 1, 2, 3]
+        vector = Vector(4, elements)
+        self.assertEqual(vector.dim, 4)
+        self.assertSequenceEqual(vector.elements, elements)
+
+    def test_get(self):
+        elements = [3, 1, 2, 3]
+        vector = Vector(4, elements)
+        self.assertEqual(vector.get(1), 3)
+        self.assertEqual(vector.get(3), 2)
+
+    def test_set(self):
+        elements = [3, 1, 2, 3]
+        vector = Vector(4, elements)
+        self.assertEqual(vector.get(1), 3)
+        self.assertEqual(vector.get(3), 2)
+        vector.set(1, 9)
+        self.assertEqual(vector.get(1), 9)
+        self.assertEqual(vector.get(3), 2)
 
 
 if __name__ == '__main__':
