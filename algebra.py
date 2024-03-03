@@ -3,13 +3,13 @@ class Vector:
         self.dim = dim
         self.elements = elements
 
-    def get(self, index: int) -> int:
-        return self.elements[index - 1]
+    def get(self, i: int) -> int:
+        return self.elements[i - 1]
 
-    def set(self, index, value):
-        if index < 1 or index > self.dim:
-            raise Exception('Esse vetor não possui o indice ' + index)
-        self.elements[index - 1] = value
+    def set(self, i, value):
+        if i < 1 or i > self.dim:
+            raise Exception('Esse vetor não possui o indice ' + i)
+        self.elements[i - 1] = value
 
     def __add__(self, other):
         # verifica se é a mesma dimensão
@@ -18,7 +18,7 @@ class Vector:
                             str(self.dim) + ' != ' + str(other.dim))
 
         new_vector = Vector(self.dim, [0] * self.dim)
-        for index in range(self.dim):
+        for index in range(1, self.dim + 1):
             sum_vector = self.get(index) + other.get(index)
             new_vector.set(index, sum_vector)
 
@@ -28,7 +28,7 @@ class Vector:
         return str(self.elements)
 
 
-class Matriz:
+class Matrix:
     def __init__(self, linha, coluna, matrizelementos):
         self.rows = linha
         self.cols = coluna
