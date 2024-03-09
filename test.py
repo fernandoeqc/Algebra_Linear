@@ -17,13 +17,36 @@ class TestMatrix(unittest.TestCase):
 
     def test_get(self):
         elements = [
-            1, 0, 0,
+            4, 5, 6,
             2, 1, 0,
             3, 2, 1
         ]
         matrix = Matrix(3, 3, elements)
-        self.assertEqual(matrix.get(1, 1), 1)
-        self.assertEqual(matrix.get(1, 2), 0)
+        self.assertEqual(matrix.get(1, 1), 4)
+        self.assertEqual(matrix.get(1, 2), 5)
+        self.assertEqual(matrix.get(1, 3), 6)
+
+        self.assertEqual(matrix.get(2, 1), 2)
+        self.assertEqual(matrix.get(2, 2), 1)
+        self.assertEqual(matrix.get(2, 3), 0)
+
+        self.assertEqual(matrix.get(3, 1), 3)
+        self.assertEqual(matrix.get(3, 2), 2)
+        self.assertEqual(matrix.get(3, 3), 1)
+
+        
+        elements = [
+            4, 5, 6,
+            3, 2, 1
+        ]
+        matrix = Matrix(2, 3, elements)
+        self.assertEqual(matrix.get(1, 1), 4)
+        self.assertEqual(matrix.get(1, 2), 5)
+        self.assertEqual(matrix.get(1, 3), 6)
+
+        self.assertEqual(matrix.get(2, 1), 3)
+        self.assertEqual(matrix.get(2, 2), 2)
+        self.assertEqual(matrix.get(2, 3), 1)
 
     def test_set(self):
         elements = [
@@ -48,7 +71,9 @@ class TestVector(unittest.TestCase):
         elements = [3, 1, 2, 3]
         vector = Vector(4, elements)
         self.assertEqual(vector.get(1), 3)
+        self.assertEqual(vector.get(2), 1)
         self.assertEqual(vector.get(3), 2)
+        self.assertEqual(vector.get(4), 3)
 
     def test_set(self):
         elements = [3, 1, 2, 3]
@@ -61,7 +86,7 @@ class TestVector(unittest.TestCase):
 
 
 class TestLinearAlgebra(unittest.TestCase):
-    def test_transpose(self):
+    def test_transpose_matrix(self):
         matrix = Matrix(2, 3, [
             3, 2, 1,
             7, 8, 9
@@ -86,8 +111,8 @@ class TestLinearAlgebra(unittest.TestCase):
             7, 8, 9
         ])
         result = LinearAlgebra.sum(first, second)
-        self.assertEqual(result.rows, 3)
-        self.assertEqual(result.cols, 2)
+        self.assertEqual(result.rows, 2)
+        self.assertEqual(result.cols, 3)
         self.assertSequenceEqual(result.elements, [
             4, 4, 2,
             8, 10, 10
@@ -110,7 +135,7 @@ class TestLinearAlgebra(unittest.TestCase):
             7, 5
         ])
         # Erro de soma de matriz com tamanhos diferentes
-        with self.assertRaisesRegex(Exception, 'tamanhos diferente'):
+        with self.assertRaises(ValueError):
             first = Matrix(3, 2, [
                 2, 2,
                 1, 2,
@@ -134,7 +159,7 @@ class TestLinearAlgebra(unittest.TestCase):
         self.assertEqual(result.dim, 3)
         self.assertEqual(result.elements, [4, 3, 4])
         # Erro de soma de vetor com tamanhos diferentes
-        with self.assertRaisesRegex(Exception, 'tamanhos diferente'):
+        with self.assertRaises(ValueError):
             first = Vector(3, [
                 1, 2, 1,
             ])
@@ -144,7 +169,7 @@ class TestLinearAlgebra(unittest.TestCase):
             LinearAlgebra.sum(first, second)
 
     def test_sum_matrix_vector(self):
-        with self.assertRaisesRegex(Exception, 'Não é possivel somar vetores e matrizes'):
+        with self.assertRaises(ValueError):
             first = Vector(3, [
                 1, 2, 1,
             ])
@@ -154,8 +179,7 @@ class TestLinearAlgebra(unittest.TestCase):
             ])
             LinearAlgebra.sum(first, second)
 
-        
-        with self.assertRaisesRegex(Exception, 'Não é possivel somar vetores e matrizes'):
+        with self.assertRaises(ValueError):
             first = Matrix(2, 2, [
                 3, 5,
                 6, 3
