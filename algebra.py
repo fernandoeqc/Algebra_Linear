@@ -32,10 +32,17 @@ class Matrix:
     def __init__(self, linha, coluna, matrizelementos):
         self.rows = linha
         self.cols = coluna
-        self.elements = matrizelementos
+        self.matrix = []
+        for i in range(linha):
+            linha_da_matriz = []
+            for j in range(coluna):
+                elemento = matrizelementos[i * coluna + j]
+                linha_da_matriz.append(elemento)
+
+            self.matrix.append(linha_da_matriz)
 
     def get(self, i, j):
-        return self.elements[(i-1) * self.rows + (j-1)]
+        return self.matrix[i - 1][j - 1]
 
     def set(self, i, j, value):
         if i < 1 or i > self.rows:
