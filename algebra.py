@@ -46,9 +46,9 @@ class Matrix:
 
     def set(self, i, j, value):
         if i < 1 or i > self.rows:
-            raise Exception('Essa matriz não possui a linha ' + i)
+            raise Exception('Essa matriz não possui a linha ' + str(i))
         if j < 1 or j > self.cols:
-            raise Exception('Essa matriz não possui a coluna ' + j)
+            raise Exception('Essa matriz não possui a coluna ' + str(j))
 
         self.matrix[i-1][j-1] = value
 
@@ -108,33 +108,41 @@ class LinearAlgebra:
 
         raise ValueError("Os parâmetros 'a' e 'b' devem ser ambos matrizes ou ambos vetores.")
 
+    @staticmethod
     def times():
         pass
 
-    def dot(A, B):
-        ''' Considerando A(m.n) e B(n.p), e C(m.p)'''
+    @staticmethod
+    def dot(A: Matrix, B: Matrix):
+        """
+        Multiplica duas matrizes.
+        Considerando A(m.n) e B(n.p), e C(m.p)
+        
+        :param a: A matriz a ser multiplicada.
+        :param b: A matriz a ser multiplicada.
+        :return: Uma matriz resultante da multiplicação.
+        """
 
         #Confere validade da multiplicação
-        An, Bn = len(A[0]), len(B)
-        if An != Bn:
+        if A.cols != B.rows:
             print("Não é possível multiplicar as matrizes AxB! \
-                \nA quantidade de colunas em A: (", An, ") é diferente da quantidade de linhas em B: (", Bn, ")")
+                \nA quantidade de colunas em A: (", A.cols, ") é diferente da quantidade de linhas em B: (", B.rows, ")")
             return []
-
-        lines, columns = len(A), len(B[0]) # Matriz de tamanho: m.p
-
-        C = Matriz(lines, columns, [[0]*lines for i in range(columns)]) # Cria uma matriz nula
+        C = Matrix(A.rows, B.cols, ([0] * A.rows *B.cols)) # Cria uma matriz nula
 
         # Faz o somatório
-        for i in range(lines):
-            for k in range(columns):
-                for j in range(An):
+        for i in range(1, C.rows+1): #start in 1
+            for k in range(1, C.cols+1): #start in 1
+                for j in range(A.cols):
+                    # print("A{}{} {} * B{}{} {}".format(i, j, A.get(i, j), i, j, B.get(i, j)))
                     summation = C.get(i, k) + A.get(i, j) * B.get(j, k)
                     C.set(i, k, summation)
         return C
 
+    @staticmethod
     def gauss():
         pass
 
+    @staticmethod
     def solve():
         pass
