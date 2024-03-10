@@ -40,8 +40,27 @@ class LinearAlgebra:
     def times():
         pass
 
-    def dot():
-        pass
+    def dot(A, B):
+        ''' Considerando A(m.n) e B(n.p), e C(m.p)'''
+
+        #Confere validade da multiplicação
+        An, Bn = len(A[0]), len(B)
+        if An != Bn:
+            print("Não é possível multiplicar as matrizes AxB! \
+                \nA quantidade de colunas em A: (", An, ") é diferente da quantidade de linhas em B: (", Bn, ")")
+            return []
+
+        lines, columns = len(A), len(B[0]) # Matriz de tamanho: m.p
+
+        C = Matriz(lines, columns, [[0]*lines for i in range(columns)]) # Cria uma matriz nula
+
+        # Faz o somatório
+        for i in range(lines):
+            for k in range(columns):
+                for j in range(An):
+                    summation = C.get(i, k) + A.get(i, j) * B.get(j, k)
+                    C.set(i, k, summation)
+        return C
 
     def gauss():
         pass

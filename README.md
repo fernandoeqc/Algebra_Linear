@@ -6,6 +6,8 @@ Implementação de algoritmos para operações com matrizes
 [Andressa Evelyn](https://github.com/Andressa-Evelyn)<br>
 [Fernando Carneiro](https://github.com/fernandoeqc)<br>
 [João Alex](https://github.com/Joao-ava)<br>
+[Pedro Maia](https://github.com/UltiMaia)<br>
+[Tais Moreira](https://github.com/taismoreira2023)<br>
 
 ## Cenário 1
 ### Matriz
