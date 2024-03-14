@@ -180,5 +180,36 @@ class LinearAlgebra:
         pass
 
     @staticmethod
-    def solve():
-        pass
+    def solve(A: Matrix):
+        """
+        Recebe uma matriz ampliada e retorna a resolução da equação linear quando houver
+
+        :param A: Matriz ampliada ser resolvida
+        :return: Lista de valores das incógnitas ou []
+        """
+
+        n = A.rows
+        solution = A.cols * [0]
+
+        # Resolve a incógnita do último pivô
+        solution[n] = A.get(n, n+1) / A.get(n, n)
+        print(solution)
+
+        if A.get(n, n) == 0:
+            print("Não existe uma solução única.")
+            return []
+
+        for i in range(n-1, 0, -1):
+            # print("n:{}, i:{}".format(n, i))
+            if A.get(i, i) == 0:
+                print("Não existe uma solução única.")
+                return []
+
+            summation = 0
+            for j in range(i+1, n+1, 1):
+                summation += A.get(i, j) * solution[j]
+                print("j:{}, ->j:{}".format(j, A.get(i, j)))
+
+            solution[i] = ( A.get(i, n+1) - summation ) / A.get(i, i)
+
+        print("\n Solution: {}".format(solution))
