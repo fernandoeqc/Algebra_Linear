@@ -189,5 +189,34 @@ class TestLinearAlgebra(unittest.TestCase):
             ])
             LinearAlgebra.sum(first, second)
 
+    def test_times(self):
+        pass
+
+    def test_dot(self):
+        first = Matrix(2, 3, [
+            1, 2, 3,
+            4, 5, 6
+        ])
+        second = Matrix(3, 2, [
+            1, 2,
+            3, 4,
+            5, 6
+        ])
+
+        result = LinearAlgebra.dot(first, second)
+        self.assertEqual(result.rows, 2)
+        self.assertEqual(result.cols, 2)
+        self.assertSequenceEqual(result.elements, [
+            22, 28,
+            49, 64
+        ])
+
+    def test_gauss(self):
+        pass
+
+    def test_solve(self):
+        pass
+
+
 if __name__ == '__main__':
     unittest.main()
