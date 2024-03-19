@@ -60,6 +60,19 @@ class Matrix:
                 elements.append(item)
         return elements
 
+    def __str__(self):
+        max_elements_size = max([len(str(item)) for item in self.elements])
+        content = ''
+        content += ('-' * max_elements_size * self.cols) + '---' * self.cols
+        content += '\n'
+        for row in self.matrix:
+            content += '|'
+            content += ' | '.join([f'{item:<{max_elements_size}}' for item in row])
+            content += '|\n'
+
+        content += ('-' * max_elements_size * self.cols) + '---' * self.cols
+        return content
+
 
 class LinearAlgebra:
     @staticmethod
@@ -220,10 +233,10 @@ class LinearAlgebra:
         """
 
         n = A.rows
-        solution = A.cols * [0]
+        solution = Matrix(1, A.cols, A.cols * [0])
 
         # Resolve a incógnita do último pivô
-        solution[n] = A.get(n, n+1) / A.get(n, n)
+        solution.set(1, n, A.get(n, n+1) / A.get(n, n))
         print(solution)
 
         if A.get(n, n) == 0:
@@ -238,9 +251,9 @@ class LinearAlgebra:
 
             summation = 0
             for j in range(i+1, n+1, 1):
-                summation += A.get(i, j) * solution[j]
+                summation += A.get(i, j) * solution.get(1, j)
                 print("j:{}, ->j:{}".format(j, A.get(i, j)))
 
-            solution[i] = ( A.get(i, n+1) - summation ) / A.get(i, i)
+            solution.set(1, i, ( A.get(i, n+1) - summation ) / A.get(i, i))
 
-        print("\n Solution: {}".format(solution))
+        return solution
