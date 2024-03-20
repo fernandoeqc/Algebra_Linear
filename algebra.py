@@ -116,43 +116,43 @@ class LinearAlgebra:
 
     @staticmethod
     def times(a, b):
-        if isinstance(a, int):
+        is_scalar = isinstance(a, float) or isinstance(a, int)
+        if is_scalar:
             if isinstance(b, Vector):
-                c = Vector(b.dim, ([0] * b.dim))
-                for i in range(b.dim):
+                c = Vector(b.dim, [0] * b.dim)
+                for i in range(1, b.dim + 1):
                     c.set(i, b.get(i) * a)
                 return c
             elif isinstance(b, Matrix):
                 c = Matrix(b.rows, b.cols, ([0] * b.rows * b.cols))
-                for i in range(b.rows):
-                    for j in range(b.cols):
-                      c.set(i, j, b.get(i,j) * a)
+                for i in range(1, b.rows + 1):
+                    for j in range(1, b.cols + 1):
+                      c.set(i, j, b.get(i, j) * a)
                 return c
-            else:
-                raise Exception("o parâmetro 'b' precisa ser matriz ou vetor.")
+
+            raise Exception("o parâmetro 'b' precisa ser matriz ou vetor.")
         if isinstance(a, Vector):
-            if isinstance(b, Vector):
-                if a.dim != b.dim:
-                    raise ValueError("os vetores precisam ter a mesma dimensão")
-                else:
-                    c = Vector(b.dim, ([0] * a.dim))
-                    for i in range(b.dim):
-                        c.set(i, a.get(i)*b.get(i))
-                    return c
-            else:
+            if not isinstance(b, Vector):
                 raise Exception("o parâmetro 'b' precisa ser um vetor")
+            if a.dim != b.dim:
+                raise ValueError("os vetores precisam ter a mesma dimensão")
+
+            c = Vector(b.dim, ([0] * a.dim))
+            for i in range(1, b.dim + 1):
+                c.set(i, a.get(i) * b.get(i))
+            return c
         if isinstance(a, Matrix):
-            if isinstance(b, Matrix):
-                if a.rows != b.rows or a.cols != b.cols:
-                    raise ValueError("as matrizes precisam ter as mesmas dimensões")
-                else:
-                    c = Matrix(a.rows, a.cols, ([0] * a.rows * b.cols))
-                    for i in range(a.rows):
-                        for j in range(b.rows):
-                            c.set(i, j, a.get(i,j)*b.get(i,j))
-                    return c
-        else:
-            raise Exception("o parâmetro 'b' precisa ser uma matriz")
+            if not isinstance(b, Matrix):
+                raise Exception("o parâmetro 'b' precisa ser uma matriz")
+            if a.rows != b.rows or a.cols != b.cols:
+                raise ValueError("as matrizes precisam ter as mesmas dimensões")
+
+            c = Matrix(a.rows, a.cols, ([0] * a.rows * b.cols))
+            for i in range(1, a.rows + 1):
+                for j in range(1, b.cols + 1):
+                    c.set(i, j, a.get(i, j) * b.get(i, j))
+            return c
+        raise Exception("o parâmetro 'a' precisa ser uma matriz")
         
     @staticmethod
     def dot(A: Matrix, B: Matrix):
