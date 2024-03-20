@@ -284,7 +284,14 @@ class TestLinearAlgebra(unittest.TestCase):
         ])
 
     def test_gauss(self):
-        pass
+        matriz_original = Matrix(3, 3, [2, 1, -1, -3, -1, 2, -2, 1, 2])
+        matriz_resultante = matriz_original.gauss()
+
+
+        for i in range(1, matriz_resultante.rows + 1):
+            for j in range(1, matriz_resultante.cols + 1):
+                print(matriz_resultante.get(i, j), end=" ")
+            print()
 
     def test_solve(self):
         pass
