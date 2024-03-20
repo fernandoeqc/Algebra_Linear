@@ -74,7 +74,9 @@ class LinearAlgebra:
             # Se 'a' for uma matriz
             transposed_elements = []
             for j in range(1, a.cols + 1):
-                column = [a.get(i, j) for i in range(1, a.rows + 1)]
+                column = []
+                for i in range(1, a.rows + 1):
+                    column.append(a.get(i, j))
                 transposed_elements.extend(column)
             return Matrix(a.cols, a.rows, transposed_elements)
 
@@ -97,7 +99,11 @@ class LinearAlgebra:
             # Se ambos 'a' e 'b' forem matrizes
             if a.rows != b.rows or a.cols != b.cols:
                 raise ValueError("As matrizes devem ter a mesma dimensão para a soma.")
-            sum_elements = [a.get(i, j) + b.get(i, j) for i in range(1, a.rows + 1) for j in range(1, a.cols + 1)]
+            sum_elements = [
+                a.get(i, j) + b.get(i, j)
+                for i in range(1, a.rows + 1)
+                for j in range(1, a.cols + 1)
+            ]
             return Matrix(a.rows, a.cols, sum_elements)
         if isinstance(a, Vector) and isinstance(b, Vector):
             # Se ambos 'a' e 'b' forem vetores
