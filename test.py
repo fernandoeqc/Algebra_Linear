@@ -189,6 +189,78 @@ class TestLinearAlgebra(unittest.TestCase):
             ])
             LinearAlgebra.sum(first, second)
 
+    def test_times_scalar_vector(self):
+        # times scalar and vector
+        vector = Vector(3, [1, 2, 3])
+        result = LinearAlgebra.times(3, vector)
+        self.assertEqual(result.dim, 3)
+        self.assertEqual(result.elements, [3, 6, 9])
+
+        vector = Vector(5, [9, 8, 7, 6, 5])
+        result = LinearAlgebra.times(1, vector)
+        self.assertEqual(result.dim, 5)
+        self.assertEqual(result.elements, [9, 8, 7, 6, 5])
+
+    def test_times_scalar_matrix(self):
+        # times scalar and matrix
+        matrix = Matrix(3, 3, [
+            1, 2, 3,
+            4, 5, 6,
+            7, 8, 9,
+        ])
+        result = LinearAlgebra.times(3, matrix)
+        self.assertEqual(result.rows, 3)
+        self.assertEqual(result.cols, 3)
+        self.assertEqual(result.elements, [
+            3, 6, 9,
+            12, 15, 18,
+            21, 24, 27
+        ])
+
+        matrix = Matrix(2, 4, [
+            1, 2, 3, 2,
+            4, 5, 6, 1
+        ])
+        result = LinearAlgebra.times(1, matrix)
+        self.assertEqual(result.rows, 2)
+        self.assertEqual(result.cols, 4)
+        self.assertEqual(result.elements, [
+            1, 2, 3, 2,
+            4, 5, 6, 1
+        ])
+
+    def test_times_matrix(self):
+        # times matrix
+        first = Matrix(2, 3, [
+            1, 2, 3,
+            4, 5, 6,
+        ])
+        second = Matrix(2, 3, [
+            5, 3, 1,
+            7, 5, 3,
+        ])
+        result = LinearAlgebra.times(first, second)
+        self.assertEqual(result.rows, 2)
+        self.assertEqual(result.cols, 3)
+        self.assertEqual(result.elements, [
+            5, 6, 3,
+            28, 25, 18,
+        ])
+
+    def test_times_vector(self):
+        # times vector
+        first = Vector(3, [1, 2, 3])
+        second = Vector(3, [3, 2, 1])
+        result = LinearAlgebra.times(first, second)
+        self.assertEqual(result.dim, 3)
+        self.assertEqual(result.elements, [3, 4, 3])
+
+        first = Vector(5, [9, 8, 7, 6, 5])
+        second = Vector(5, [9, 8, 7, 6, 5])
+        result = LinearAlgebra.times(first, second)
+        self.assertEqual(result.dim, 5)
+        self.assertEqual(result.elements, [81, 64, 49, 36, 25])
+
     def test_times(self):
         pass
 
