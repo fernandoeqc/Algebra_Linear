@@ -185,15 +185,15 @@ class LinearAlgebra:
     def gauss(a):
         if not isinstance(a, Matrix):
             raise Exception("o valor de entrada deve ser uma matriz")
+        
+        if a.rows + 1 != a.cols:
+            raise ValueError('A matriz não está no formato n linhas e n + 1 colunas')
 
         # Criando uma cópia da matriz para não modificar a original
-        result_matrix = Matrix(a.rows, a.cols, [0] * (a.rows * a.cols))
-        for i in range(1, a.rows + 1):
-            for j in range(1, a.cols + 1):
-                result_matrix.set(i, j, a.get(i, j))
+        result_matrix = Matrix(a.rows, a.cols, a.elements)
 
         # Eliminação gaussiana
-        for k in range(1, min(a.rows, a.cols) + 1):
+        for k in range(1, a.rows + 1):
             # Encontrando o pivô máximo na coluna k
             max_index = k
             max_val = abs(result_matrix.get(k, k))
@@ -225,28 +225,28 @@ class LinearAlgebra:
         :return: Lista de valores das incógnitas ou []
         """
 
+        A = LinearAlgebra.gauss(A)
         n = A.rows
-        solution = Matrix(1, A.cols, A.cols * [0])
+        solution = Matrix(A.rows, 1, A.cols * [0])
+        # solution
 
         # Resolve a incógnita do último pivô
-        solution.set(1, n, A.get(n, n+1) / A.get(n, n))
-        print(solution)
+        solution.set(n, 1, A.get(n, n+1) / A.get(n, n))
+        # print(solution)
 
         if A.get(n, n) == 0:
-            print("Não existe uma solução única.")
-            return []
+            raise ValueError("Não existe uma solução única.")
 
         for i in range(n-1, 0, -1):
             # print("n:{}, i:{}".format(n, i))
             if A.get(i, i) == 0:
-                print("Não existe uma solução única.")
-                return []
+                raise ValueError("Não existe uma solução única.")
 
             summation = 0
             for j in range(i+1, n+1, 1):
-                summation += A.get(i, j) * solution.get(1, j)
-                print("j:{}, ->j:{}".format(j, A.get(i, j)))
+                summation += A.get(i, j) * solution.get(j, 1)
+                # print("j:{}, ->j:{}".format(j, A.get(i, j)))
 
-            solution.set(1, i, ( A.get(i, n+1) - summation ) / A.get(i, i))
+            solution.set(i, 1, ( A.get(i, n+1) - summation ) / A.get(i, i))
 
         return solution
