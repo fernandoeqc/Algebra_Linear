@@ -11,19 +11,6 @@ class Vector:
             raise Exception('Esse vetor não possui o indice ' + i)
         self.elements[i - 1] = value
 
-    def __add__(self, other):
-        # verifica se é a mesma dimensão
-        if self.dim != other.dim:
-            raise Exception('Os objetos não são do mesmo tamanho ' +
-                            str(self.dim) + ' != ' + str(other.dim))
-
-        new_vector = Vector(self.dim, [0] * self.dim)
-        for index in range(1, self.dim + 1):
-            sum_vector = self.get(index) + other.get(index)
-            new_vector.set(index, sum_vector)
-
-        return new_vector
-
     def __str__(self):
         return str(self.elements)
 
