@@ -183,38 +183,38 @@ class LinearAlgebra:
 
     @staticmethod
     def gauss(a):
-        if isinstance(a, Matrix):
-            # Criando uma cópia da matriz para não modificar a original
-            result_matrix = Matrix(a.rows, a.cols, [0] * (a.rows * a.cols))
-            for i in range(1, a.rows + 1):
-                for j in range(1, a.cols + 1):
-                    result_matrix.set(i, j, a.get(i, j))
-
-            # Eliminação gaussiana
-            for k in range(1, min(a.rows, a.cols) + 1):
-                # Encontrando o pivô máximo na coluna k
-                max_index = k
-                max_val = abs(result_matrix.get(k, k))
-                for i in range(k + 1, a.rows + 1):
-                    if abs(result_matrix.get(i, k)) > max_val:
-                        max_val = abs(result_matrix.get(i, k))
-                        max_index = i
-
-                # Trocando as linhas
-                for j in range(k, a.cols + 1):
-                    temp = result_matrix.get(k, j)
-                    result_matrix.set(k, j, result_matrix.get(max_index, j))
-                    result_matrix.set(max_index, j, temp)
-
-                # Zerando os elementos abaixo do pivô
-                for i in range(k + 1, a.rows + 1):
-                    factor = result_matrix.get(i, k) / result_matrix.get(k, k)
-                    for j in range(k, a.cols + 1):
-                        result_matrix.set(i, j, result_matrix.get(i, j) - factor * result_matrix.get(k, j))
-
-            return result_matrix
-        else:
+        if not isinstance(a, Matrix):
             raise Exception("o valor de entrada deve ser uma matriz")
+
+        # Criando uma cópia da matriz para não modificar a original
+        result_matrix = Matrix(a.rows, a.cols, [0] * (a.rows * a.cols))
+        for i in range(1, a.rows + 1):
+            for j in range(1, a.cols + 1):
+                result_matrix.set(i, j, a.get(i, j))
+
+        # Eliminação gaussiana
+        for k in range(1, min(a.rows, a.cols) + 1):
+            # Encontrando o pivô máximo na coluna k
+            max_index = k
+            max_val = abs(result_matrix.get(k, k))
+            for i in range(k + 1, a.rows + 1):
+                if abs(result_matrix.get(i, k)) > max_val:
+                    max_val = abs(result_matrix.get(i, k))
+                    max_index = i
+
+            # Trocando as linhas
+            for j in range(k, a.cols + 1):
+                temp = result_matrix.get(k, j)
+                result_matrix.set(k, j, result_matrix.get(max_index, j))
+                result_matrix.set(max_index, j, temp)
+
+            # Zerando os elementos abaixo do pivô
+            for i in range(k + 1, a.rows + 1):
+                factor = result_matrix.get(i, k) / result_matrix.get(k, k)
+                for j in range(k, a.cols + 1):
+                    result_matrix.set(i, j, result_matrix.get(i, j) - factor * result_matrix.get(k, j))
+
+        return result_matrix
 
     @staticmethod
     def solve(A: Matrix):
