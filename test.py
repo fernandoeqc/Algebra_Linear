@@ -261,9 +261,6 @@ class TestLinearAlgebra(unittest.TestCase):
         self.assertEqual(result.dim, 5)
         self.assertEqual(result.elements, [81, 64, 49, 36, 25])
 
-    def test_times(self):
-        pass
-
     def test_dot(self):
         first = Matrix(2, 3, [
             1, 2, 3,
@@ -284,17 +281,24 @@ class TestLinearAlgebra(unittest.TestCase):
         ])
 
     def test_gauss(self):
-        matriz_original = Matrix(3, 3, [2, 1, -1, -3, -1, 2, -2, 1, 2])
-        matriz_resultante = matriz_original.gauss()
-
-
-        for i in range(1, matriz_resultante.rows + 1):
-            for j in range(1, matriz_resultante.cols + 1):
-                print(matriz_resultante.get(i, j), end=" ")
-            print()
+        pass
 
     def test_solve(self):
-        pass
+        matrix = Matrix(2, 3, [
+            1, 2, 5,
+            3, -5, 4
+        ])
+        result = LinearAlgebra.solve(matrix)
+        self.assertAlmostEqual(result.get(1, 1), 3)
+        self.assertAlmostEqual(result.get(2, 1), 1)
+
+        matrix = Matrix(2, 3, [
+            2, 1, 2,
+            1, 3, -4
+        ])
+        result = LinearAlgebra.solve(matrix)
+        self.assertAlmostEqual(result.get(1, 1), 2)
+        self.assertAlmostEqual(result.get(2, 1), -2)
 
 
 if __name__ == '__main__':
