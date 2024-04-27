@@ -1,60 +1,69 @@
 from algebra import *
 
 class Transformations:
-    def cartesiana_to_homogenea() -> Matrix:
+    def _cartesiana_to_homogenea(self) -> Matrix:
         pass
 
-    def homogenea_to_cartesiana() -> Matrix:
+    def _homogenea_to_cartesiana(self) -> Matrix:
         pass
 
-    def translate2D() -> Matrix:
+    def _vector_to_matrix(vector:Vector) -> Matrix:
+       return Matrix(vector.dim, 1, vector.elements)
+
+    @classmethod
+    def translate2D(self, vector:Vector, dx, dy) -> Matrix:
         pass
 
-    def translate3D() -> Matrix:
+    @classmethod
+    def translate3D(self, vector:Vector, dx, dy, dz) -> Matrix:
         pass
 
-    def roration2D() -> Matrix:
+    @classmethod
+    def roration2D(self, vector:Vector, angle) -> Matrix:
         pass
 
-    def rotation3DX() -> Matrix:
+    @classmethod
+    def rotation3DX(self, vector:Vector, angle) -> Matrix:
         pass
 
-    def rotation3DY() -> Matrix:
+    def rotation3DY(self, vector:Vector, angle) -> Matrix:
         pass
 
-    def rotation3DZ() -> Matrix:
+    @classmethod
+    def rotation3DZ(self, vector:Vector, angle) -> Matrix:
         pass
 
-    def reflection2DX() -> Matrix:
+    @classmethod
+    def reflection2DX(self, vector:Vector) -> Matrix:
         pass
 
-    def reflection2DY() -> Matrix:
+    @classmethod
+    def reflection2DY(self, vector:Vector) -> Matrix:
         pass
 
-    def reflection3DX() -> Matrix:
+    @classmethod
+    def reflection3DX(self, vector:Vector) -> Matrix:
         pass
 
-    def reflection3DY() -> Matrix:
+    @classmethod
+    def reflection3DY(self, vector:Vector) -> Matrix:
         pass
 
-    def reflection3DZ() -> Matrix:
+    @classmethod
+    def reflection3DZ(self, vector:Vector) -> Matrix:
         pass
 
-    def projection2DX() -> Matrix:
-        pass
-
-    def projection2DY() -> Matrix:
-        pass
-
-    def projection3DX() -> Matrix:
-        pass
-
-    def projection3DY() -> Matrix:
-        pass
-
-    def projection3DZ() -> Matrix:
-        pass
-
-    def shearing() -> Matrix:
+    @classmethod
+    def projection2DX(self, vector:Vector) -> Matrix:
+    @classmethod
+    def projection2DY(self, vector:Vector) -> Matrix:
+    @classmethod
+    def projection3DX(self, vector:Vector) -> Matrix:
+    @classmethod
+    def projection3DY(self, vector:Vector) -> Matrix:
+    @classmethod
+    def projection3DZ(self, vector:Vector) -> Matrix:
+    @classmethod
+    def shearing(self, vector:Vector) -> Matrix:
         pass
 
