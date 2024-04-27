@@ -1,60 +1,60 @@
 from algebra import *
 
+
 class Transformations:
-    def cartesiana_to_homogenea() -> Matrix:
+    def cartesiana_to_homogenea() -> Vector:
         pass
 
-    def homogenea_to_cartesiana() -> Matrix:
+    def homogenea_to_cartesiana() -> Vector:
         pass
 
-    def translate2D() -> Matrix:
+    def translate2D() -> Vector:
         pass
 
-    def translate3D() -> Matrix:
+    def translate3D() -> Vector:
         pass
 
-    def roration2D() -> Matrix:
+    def roration2D() -> Vector:
         pass
 
-    def rotation3DX() -> Matrix:
+    def rotation3DX() -> Vector:
         pass
 
-    def rotation3DY() -> Matrix:
+    def rotation3DY() -> Vector:
         pass
 
-    def rotation3DZ() -> Matrix:
+    def rotation3DZ() -> Vector:
         pass
 
-    def reflection2DX() -> Matrix:
+    def reflection2DX() -> Vector:
         pass
 
-    def reflection2DY() -> Matrix:
+    def reflection2DY() -> Vector:
         pass
 
-    def reflection3DX() -> Matrix:
+    def reflection3DX() -> Vector:
         pass
 
-    def reflection3DY() -> Matrix:
+    def reflection3DY() -> Vector:
         pass
 
-    def reflection3DZ() -> Matrix:
+    def reflection3DZ() -> Vector:
         pass
 
-    def projection2DX() -> Matrix:
+    def projection2DX() -> Vector:
         pass
 
-    def projection2DY() -> Matrix:
+    def projection2DY() -> Vector:
         pass
 
-    def projection3DX() -> Matrix:
+    def projection3DX() -> Vector:
         pass
 
-    def projection3DY() -> Matrix:
+    def projection3DY() -> Vector:
         pass
 
-    def projection3DZ() -> Matrix:
+    def projection3DZ() -> Vector:
         pass
 
-    def shearing() -> Matrix:
+    def shearing() -> Vector:
         pass
-
