@@ -30,6 +30,8 @@ Implementação de algoritmos para operações com matrizes
 
 
 ## Cenário 2
+### Testes unitários e main.py
+- Testes unitários e main.py (João)
 ### Translação (em 2D e em 3D)
 - translate2D(vector, dx, dy) (Pedro)
 - translate3D(vector, dx, dy, dz) (Pedro)
