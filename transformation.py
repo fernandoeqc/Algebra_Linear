@@ -55,14 +55,77 @@ class Transformations:
 
     @classmethod
     def projection2DX(self, vector:Vector) -> Matrix:
+        canonical_matrix = [
+            1, 0,
+            0, 0
+        ]
+
+        cmatrix:Matrix = Matrix(2, 2, canonical_matrix)
+        vectorM = self._vector_to_matrix(vector)
+
+        result = LinearAlgebra.dot(cmatrix, vectorM)
+
+        return result
+
     @classmethod
     def projection2DY(self, vector:Vector) -> Matrix:
+        canonical_matrix = [
+            0, 0,
+            0, 1
+        ]
+
+        cmatrix:Matrix = Matrix(2, 2, canonical_matrix)
+        vectorM = self._vector_to_matrix(vector)
+
+        result = LinearAlgebra.dot(cmatrix, vectorM)
+
+        return result
+
     @classmethod
     def projection3DX(self, vector:Vector) -> Matrix:
+        canonical_matrix = [
+            1, 0, 0,
+            0, 1, 0,
+            0, 0, 0
+        ]
+
+        cmatrix:Matrix = Matrix(3, 3, canonical_matrix)
+        vectorM = self._vector_to_matrix(vector)
+
+        result = LinearAlgebra.dot(cmatrix, vectorM)
+
+        return result
+
     @classmethod
     def projection3DY(self, vector:Vector) -> Matrix:
+        canonical_matrix = [
+            1, 0, 0,
+            0, 0, 0,
+            0, 0, 1
+        ]
+
+        cmatrix:Matrix = Matrix(3, 3, canonical_matrix)
+        vectorM = self._vector_to_matrix(vector)
+
+        result = LinearAlgebra.dot(cmatrix, vectorM)
+
+        return result
+
     @classmethod
     def projection3DZ(self, vector:Vector) -> Matrix:
+        canonical_matrix = [
+            0, 0, 0,
+            0, 1, 0,
+            0, 0, 1
+        ]
+
+        cmatrix:Matrix = Matrix(3, 3, canonical_matrix)
+        vectorM = self._vector_to_matrix(vector)
+
+        result = LinearAlgebra.dot(cmatrix, vectorM)
+
+        return result
+
     @classmethod
     def shearing(self, vector:Vector) -> Matrix:
         pass
