@@ -5,8 +5,9 @@ class Transformations:
     def _cartesiana_to_homogenea(self) -> Matrix:
         pass
 
-    def _homogenea_to_cartesiana(self) -> Matrix:
-        pass
+    @staticmethod
+    def _homogenea_to_cartesiana(matrix: Matrix) -> Matrix:
+        return Matrix(matrix.rows - 1, matrix.cols, matrix.elements[0:-1])
 
     @staticmethod
     def _vector_to_matrix(vector: Vector) -> Matrix:
@@ -37,23 +38,61 @@ class Transformations:
 
     @staticmethod
     def reflection2DX(vector: Vector) -> Matrix:
-        pass
+        reflection_matrix = Matrix(3, 3, [
+            1, 0, 0,
+            0, -1, 0,
+            0, 0, 1
+        ])
+        vectorM = Matrix(3, 1, vector.elements + [1])
+        result = LinearAlgebra.dot(reflection_matrix, vectorM)
+        return Transformations._homogenea_to_cartesiana(result)
 
     @staticmethod
     def reflection2DY(vector: Vector) -> Matrix:
-        pass
+        reflection_matrix = Matrix(3, 3, [
+            -1, 0, 0,
+            0, 1, 0,
+            0, 0, 1
+        ])
+        vectorM = Matrix(3, 1, vector.elements + [1])
+        result = LinearAlgebra.dot(reflection_matrix, vectorM)
+        return Transformations._homogenea_to_cartesiana(result)
 
     @staticmethod
     def reflection3DX(vector: Vector) -> Matrix:
-        pass
+        reflection_matrix = Matrix(4, 4, [
+            -1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1
+        ])
+        vectorM = Matrix(4, 1, vector.elements + [1])
+        result = LinearAlgebra.dot(reflection_matrix, vectorM)
+        return Transformations._homogenea_to_cartesiana(result)
 
     @staticmethod
     def reflection3DY(vector: Vector) -> Matrix:
-        pass
+        reflection_matrix = Matrix(4, 4, [
+            1, 0, 0, 0,
+            0, -1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1
+        ])
+        vectorM = Matrix(4, 1, vector.elements + [1])
+        result = LinearAlgebra.dot(reflection_matrix, vectorM)
+        return Transformations._homogenea_to_cartesiana(result)
 
     @staticmethod
     def reflection3DZ(vector: Vector) -> Matrix:
-        pass
+        reflection_matrix = Matrix(4, 4, [
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, -1, 0,
+            0, 0, 0, 1
+        ])
+        vectorM = Matrix(4, 1, vector.elements + [1])
+        result = LinearAlgebra.dot(reflection_matrix, vectorM)
+        return Transformations._homogenea_to_cartesiana(result)
 
     @staticmethod
     def projection2DX(vector: Vector) -> Matrix:
