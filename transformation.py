@@ -2,8 +2,8 @@ from algebra import *
 
 
 class Transformations:
-    def _cartesiana_to_homogenea(self) -> Matrix:
-        pass
+    def _cartesiana_to_homogenea(matrix: Matrix) -> Matrix:
+        return Matrix(matrix.rows + 1, matrix.cols, matrix.elements + [1])
 
     @staticmethod
     def _homogenea_to_cartesiana(matrix: Matrix) -> Matrix:
@@ -15,14 +15,33 @@ class Transformations:
 
     @staticmethod
     def translate2D(vector: Vector, dx, dy) -> Matrix:
-        pass
+        translationMatrix2d = Matrix(3, 3, [
+            1, 0, dx,
+            0, 1, dy,
+            0, 0, 1,
+        ])
+        matrix = Transformations._vector_to_matrix(vector)
+        homoMatrix = Transformations._cartesiana_to_homogenea(matrix)
+        result = LinearAlgebra.dot(translationMatrix2d, homoMatrix)
+        return Transformations._homogenea_to_cartesiana(result)
+        
 
     @staticmethod
     def translate3D(vector: Vector, dx, dy, dz) -> Matrix:
-        pass
+        translationMatrix3d = Matrix(4, 4, [
+            1, 0, 0, dx,
+            0, 1, 0, dy,
+            0, 0, 1, dz,
+            0, 0, 0, 1
+        ])
+        matrix = Transformations._vector_to_matrix(vector)
+        homoMatrix = Transformations._cartesiana_to_homogenea(matrix)
+        result = LinearAlgebra.dot(translationMatrix3d, homoMatrix)
+        return Transformations._homogenea_to_cartesiana(result)
+        
 
     @staticmethod
-    def roration2D(vector: Vector, angle) -> Matrix:
+    def rotation2D(vector: Vector, angle) -> Matrix:
         pass
 
     @staticmethod
@@ -168,5 +187,14 @@ class Transformations:
         return result
 
     @staticmethod
-    def shearing(vector: Vector) -> Matrix:
-        pass
+    def shearing(vector: Vector, kx: float, ky: float) -> Matrix:
+        shearingMatrix = Matrix(3, 3, [
+                1, kx, 0,
+                ky, 1, 0,
+                0, 0, 1
+            ])
+
+        matrix = Transformations._vector_to_matrix(vector)
+        homoMatrix = Transformations._cartesiana_to_homogenea(matrix)
+        result = LinearAlgebra.dot(shearingMatrix, homoMatrix)
+        return Transformations._homogenea_to_cartesiana(result)
