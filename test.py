@@ -310,6 +310,33 @@ class TestTransformations(unittest.TestCase):
         self.assertAlmostEqual(round(result.get(1, 1), 2), 0.37)
         self.assertAlmostEqual(round(result.get(2, 1), 2), 1.37)
 
+    def test_reflection3DZ(self):
+        # questão 15.a do livro de algebra
+        u = Vector(3, [2, -5, 3])
+        result = Transformations.reflection3DZ(u)
+        self.assertEqual(len(result.elements), 3)
+        self.assertSequenceEqual(result.elements, [
+            2, -5, -3
+        ])
+
+    def test_reflection3DY(self):
+        # questão 15.b do livro de algebra
+        u = Vector(3, [2, -5, 3])
+        result = Transformations.reflection3DY(u)
+        self.assertEqual(len(result.elements), 3)
+        self.assertSequenceEqual(result.elements, [
+            2, 5, 3
+        ])
+
+    def test_reflection3DZ(self):
+        # questão 15.c do livro de algebra
+        u = Vector(3, [2, -5, 3])
+        result = Transformations.reflection3DX(u)
+        self.assertEqual(len(result.elements), 3)
+        self.assertSequenceEqual(result.elements, [
+            -2, -5, 3
+        ])
+
 
 if __name__ == '__main__':
     unittest.main()
