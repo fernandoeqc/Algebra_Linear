@@ -12,7 +12,7 @@ class Transformations:
 
     @staticmethod
     def _vector_to_matrix(vector: Vector) -> Matrix:
-       return Matrix(vector.dim, 1, vector.elements)
+        return Matrix(vector.dim, 1, vector.elements)
 
     @staticmethod
     def translate2D(vector: Vector, dx, dy) -> Matrix:
@@ -25,7 +25,6 @@ class Transformations:
         homoMatrix = Transformations._cartesiana_to_homogenea(matrix)
         result = LinearAlgebra.dot(translationMatrix2d, homoMatrix)
         return Transformations._homogenea_to_cartesiana(result)
-        
 
     @staticmethod
     def translate3D(vector: Vector, dx, dy, dz) -> Matrix:
@@ -39,7 +38,6 @@ class Transformations:
         homoMatrix = Transformations._cartesiana_to_homogenea(matrix)
         result = LinearAlgebra.dot(translationMatrix3d, homoMatrix)
         return Transformations._homogenea_to_cartesiana(result)
-        
 
     @staticmethod
     def rotation2D(vector: Vector, angle) -> Matrix:
@@ -179,10 +177,11 @@ class Transformations:
 
     @staticmethod
     def projection3DX(vector: Vector) -> Matrix:
+        '''Projeção ortogonal sobre o plano YZ'''
         canonical_matrix = [
-            1, 0, 0,
+            0, 0, 0,
             0, 1, 0,
-            0, 0, 0
+            0, 0, 1
         ]
 
         cmatrix: Matrix = Matrix(3, 3, canonical_matrix)
@@ -194,6 +193,7 @@ class Transformations:
 
     @staticmethod
     def projection3DY(vector: Vector) -> Matrix:
+        '''Projeção ortogonal sobre o plano XZ'''
         canonical_matrix = [
             1, 0, 0,
             0, 0, 0,
@@ -209,10 +209,11 @@ class Transformations:
 
     @staticmethod
     def projection3DZ(vector: Vector) -> Matrix:
+        '''Projeção ortogonal sobre o plano XY'''
         canonical_matrix = [
-            0, 0, 0,
+            1, 0, 0,
             0, 1, 0,
-            0, 0, 1
+            0, 0, 0
         ]
 
         cmatrix: Matrix = Matrix(3, 3, canonical_matrix)
@@ -225,10 +226,10 @@ class Transformations:
     @staticmethod
     def shearing(vector: Vector, kx: float, ky: float) -> Matrix:
         shearingMatrix = Matrix(3, 3, [
-                1, kx, 0,
-                ky, 1, 0,
-                0, 0, 1
-            ])
+            1, kx, 0,
+            ky, 1, 0,
+            0, 0, 1
+        ])
 
         matrix = Transformations._vector_to_matrix(vector)
         homoMatrix = Transformations._cartesiana_to_homogenea(matrix)
