@@ -337,6 +337,26 @@ class TestTransformations(unittest.TestCase):
         self.assertAlmostEqual(round(result.get(2, 1), 2), -2)
         self.assertAlmostEqual(round(result.get(3, 1), 2), 2)
 
+    def test_reflection2DX(self):
+        e1 = Vector(2, [1, 0])
+        self.assertSequenceEqual(Transformations.reflection2DX(e1).elements, [
+            1, 0
+        ])
+        e2 = Vector(2, [0, 1])
+        self.assertSequenceEqual(Transformations.reflection2DX(e2).elements, [
+            0, -1
+        ])
+
+    def test_reflection2DY(self):
+        e1 = Vector(2, [1, 0])
+        self.assertSequenceEqual(Transformations.reflection2DY(e1).elements, [
+            -1, 0
+        ])
+        e2 = Vector(2, [0, 1])
+        self.assertSequenceEqual(Transformations.reflection2DY(e2).elements, [
+            0, 1
+        ])
+
     def test_reflection3DZ(self):
         # questão 15.a do livro de algebra
         u = Vector(3, [2, -5, 3])
