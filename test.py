@@ -1,5 +1,6 @@
 import unittest
 from algebra import Matrix, Vector, LinearAlgebra
+from transformation import Transformations
 
 
 class TestMatrix(unittest.TestCase):
@@ -299,6 +300,15 @@ class TestLinearAlgebra(unittest.TestCase):
         result = LinearAlgebra.solve(matrix)
         self.assertAlmostEqual(result.get(1, 1), 2)
         self.assertAlmostEqual(result.get(2, 1), -2)
+
+
+class TestTransformations(unittest.TestCase):
+    def test_rotation2D(self):
+        u = Vector(2, [1, 1])
+        result = Transformations.rotation2D(u, 30)
+        self.assertEqual(len(result.elements), 2)
+        self.assertAlmostEqual(round(result.get(1, 1), 2), 0.37)
+        self.assertAlmostEqual(round(result.get(2, 1), 2), 1.37)
 
 
 if __name__ == '__main__':
