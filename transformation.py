@@ -64,6 +64,7 @@ class Transformations:
         result = LinearAlgebra.dot(rotation_matrix, vectorM)
         return Transformations._homogenea_to_cartesiana(result)
 
+    @staticmethod
     def rotation3DY(vector: Vector, angle) -> Matrix:
         angle = math.radians(angle)
         rotation_matrix = Matrix(4, 4, [
@@ -150,78 +151,82 @@ class Transformations:
     @staticmethod
     def projection2DX(vector: Vector) -> Matrix:
         canonical_matrix = [
-            1, 0,
-            0, 0
+            0, 0, 0,
+            0, 1, 0,
+            0, 0, 1
         ]
 
-        cmatrix: Matrix = Matrix(2, 2, canonical_matrix)
-        vectorM = Transformations._vector_to_matrix(vector)
+        cmatrix = Matrix(3, 3, canonical_matrix)
+        vectorM = Matrix(vector.dim + 1, 1, vector.elements + [1])
 
         result = LinearAlgebra.dot(cmatrix, vectorM)
-
-        return result
+        return Transformations._homogenea_to_cartesiana(result)
 
     @staticmethod
     def projection2DY(vector: Vector) -> Matrix:
         canonical_matrix = [
-            0, 0,
-            0, 1
+            1, 0, 0,
+            0, 0, 0,
+            0, 0, 1
         ]
 
-        cmatrix: Matrix = Matrix(2, 2, canonical_matrix)
-        vectorM = Transformations._vector_to_matrix(vector)
+        cmatrix = Matrix(3, 3, canonical_matrix)
+        vectorM = Matrix(vector.dim + 1, 1, vector.elements + [1])
 
         result = LinearAlgebra.dot(cmatrix, vectorM)
 
-        return result
+        return Transformations._homogenea_to_cartesiana(result)
 
     @staticmethod
     def projection3DX(vector: Vector) -> Matrix:
         '''Projeção ortogonal sobre o plano YZ'''
         canonical_matrix = [
-            0, 0, 0,
-            0, 1, 0,
-            0, 0, 1
+            0, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1
         ]
 
-        cmatrix: Matrix = Matrix(3, 3, canonical_matrix)
-        vectorM = Transformations._vector_to_matrix(vector)
+        cmatrix = Matrix(4, 4, canonical_matrix)
+        vectorM = Matrix(vector.dim + 1, 1, vector.elements + [1])
 
         result = LinearAlgebra.dot(cmatrix, vectorM)
 
-        return result
+        return Transformations._homogenea_to_cartesiana(result)
 
     @staticmethod
     def projection3DY(vector: Vector) -> Matrix:
         '''Projeção ortogonal sobre o plano XZ'''
         canonical_matrix = [
-            1, 0, 0,
-            0, 0, 0,
-            0, 0, 1
+            1, 0, 0, 0,
+            0, 0, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1
         ]
 
-        cmatrix: Matrix = Matrix(3, 3, canonical_matrix)
-        vectorM = Transformations._vector_to_matrix(vector)
+        cmatrix = Matrix(4, 4, canonical_matrix)
+        vectorM = Matrix(vector.dim + 1, 1, vector.elements + [1])
 
         result = LinearAlgebra.dot(cmatrix, vectorM)
 
-        return result
+        return Transformations._homogenea_to_cartesiana(result)
 
     @staticmethod
     def projection3DZ(vector: Vector) -> Matrix:
         '''Projeção ortogonal sobre o plano XY'''
         canonical_matrix = [
-            1, 0, 0,
-            0, 1, 0,
-            0, 0, 0
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 1
         ]
 
-        cmatrix: Matrix = Matrix(3, 3, canonical_matrix)
-        vectorM = Transformations._vector_to_matrix(vector)
+        cmatrix = Matrix(4, 4, canonical_matrix)
+        vectorM = Matrix(vector.dim + 1, 1, vector.elements + [1])
 
         result = LinearAlgebra.dot(cmatrix, vectorM)
 
-        return result
+        return Transformations._homogenea_to_cartesiana(result)
 
     @staticmethod
     def shearing(vector: Vector, kx: float, ky: float) -> Matrix:
