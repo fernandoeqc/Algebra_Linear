@@ -1,3 +1,4 @@
+import math
 from algebra import *
 
 
@@ -42,18 +43,53 @@ class Transformations:
 
     @staticmethod
     def rotation2D(vector: Vector, angle) -> Matrix:
-        pass
+        angle = math.radians(angle)
+        rotation_matrix = Matrix(3, 3, [
+            math.cos(angle), -math.sin(angle), 0,
+            math.sin(angle), math.cos(angle), 0,
+            0, 0, 1
+        ])
+        vectorM = Matrix(vector.dim + 1, 1, vector.elements + [1])
+        result = LinearAlgebra.dot(rotation_matrix, vectorM)
+        return Transformations._homogenea_to_cartesiana(result)
 
     @staticmethod
     def rotation3DX(vector: Vector, angle) -> Matrix:
-        pass
+        angle = math.radians(angle)
+        rotation_matrix = Matrix(4, 4, [
+            1, 0, 0, 0,
+            0, math.cos(angle), -math.sin(angle), 0,
+            0, math.sin(angle), math.cos(angle), 0,
+            0, 0, 0, 1
+        ])
+        vectorM = Matrix(vector.dim + 1, 1, vector.elements + [1])
+        result = LinearAlgebra.dot(rotation_matrix, vectorM)
+        return Transformations._homogenea_to_cartesiana(result)
 
     def rotation3DY(vector: Vector, angle) -> Matrix:
-        pass
+        angle = math.radians(angle)
+        rotation_matrix = Matrix(4, 4, [
+            math.cos(angle), 0, math.sin(angle), 0,
+            0, 1, 0, 0,
+            -math.sin(angle), 0, math.cos(angle), 0,
+            0, 0, 0, 1
+        ])
+        vectorM = Matrix(vector.dim + 1, 1, vector.elements + [1])
+        result = LinearAlgebra.dot(rotation_matrix, vectorM)
+        return Transformations._homogenea_to_cartesiana(result)
 
     @staticmethod
     def rotation3DZ(vector: Vector, angle) -> Matrix:
-        pass
+        angle = math.radians(angle)
+        rotation_matrix = Matrix(4, 4, [
+            math.cos(angle), -math.sin(angle), 0, 0,
+            math.sin(angle), math.cos(angle), 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1
+        ])
+        vectorM = Matrix(vector.dim + 1, 1, vector.elements + [1])
+        result = LinearAlgebra.dot(rotation_matrix, vectorM)
+        return Transformations._homogenea_to_cartesiana(result)
 
     @staticmethod
     def reflection2DX(vector: Vector) -> Matrix:
@@ -62,7 +98,7 @@ class Transformations:
             0, -1, 0,
             0, 0, 1
         ])
-        vectorM = Matrix(3, 1, vector.elements + [1])
+        vectorM = Matrix(vector.dim + 1, 1, vector.elements + [1])
         result = LinearAlgebra.dot(reflection_matrix, vectorM)
         return Transformations._homogenea_to_cartesiana(result)
 
@@ -73,7 +109,7 @@ class Transformations:
             0, 1, 0,
             0, 0, 1
         ])
-        vectorM = Matrix(3, 1, vector.elements + [1])
+        vectorM = Matrix(vector.dim + 1, 1, vector.elements + [1])
         result = LinearAlgebra.dot(reflection_matrix, vectorM)
         return Transformations._homogenea_to_cartesiana(result)
 
