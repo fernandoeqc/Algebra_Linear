@@ -310,6 +310,33 @@ class TestTransformations(unittest.TestCase):
         self.assertAlmostEqual(round(result.get(1, 1), 2), 0.37)
         self.assertAlmostEqual(round(result.get(2, 1), 2), 1.37)
 
+    def test_rotation3DX(self):
+        # questão 19.a do livro de algebra
+        u = Vector(3, [-2, 1, 2])
+        result = Transformations.rotation3DX(u, 30)
+        self.assertEqual(len(result.elements), 3)
+        self.assertAlmostEqual(round(result.get(1, 1), 2), -2)
+        self.assertAlmostEqual(round(result.get(2, 1), 2), -0.13)
+        self.assertAlmostEqual(round(result.get(3, 1), 2), 2.23)
+
+    def test_rotation3DY(self):
+        # questão 19.b do livro de algebra
+        u = Vector(3, [-2, 1, 2])
+        result = Transformations.rotation3DY(u, 45)
+        self.assertEqual(len(result.elements), 3)
+        self.assertAlmostEqual(round(result.get(1, 1), 2), 0)
+        self.assertAlmostEqual(round(result.get(2, 1), 2), 1)
+        self.assertAlmostEqual(round(result.get(3, 1), 2), 2.83)
+
+    def test_rotation3DZ(self):
+        # questão 19.b do livro de algebra
+        u = Vector(3, [-2, 1, 2])
+        result = Transformations.rotation3DZ(u, 90)
+        self.assertEqual(len(result.elements), 3)
+        self.assertAlmostEqual(round(result.get(1, 1), 2), -1)
+        self.assertAlmostEqual(round(result.get(2, 1), 2), -2)
+        self.assertAlmostEqual(round(result.get(3, 1), 2), 2)
+
     def test_reflection3DZ(self):
         # questão 15.a do livro de algebra
         u = Vector(3, [2, -5, 3])
