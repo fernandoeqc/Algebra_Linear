@@ -396,7 +396,7 @@ class TestTransformations(unittest.TestCase):
     def test_projection3DY(self):
         # questão 17.b do livro de algebra
         u = Vector(3, [-2, 1, 3])
-        result = Transformations.projection3DX(u)
+        result = Transformations.projection3DY(u)
         self.assertEqual(len(result.elements), 3)
         self.assertSequenceEqual(result.elements, [
             -2, 0, 3
@@ -405,7 +405,7 @@ class TestTransformations(unittest.TestCase):
     def test_projection3DZ(self):
         # questão 17.a do livro de algebra
         u = Vector(3, [-2, 1, 3])
-        result = Transformations.projection3DX(u)
+        result = Transformations.projection3DZ(u)
         self.assertEqual(len(result.elements), 3)
         self.assertSequenceEqual(result.elements, [
             -2, 1, 0

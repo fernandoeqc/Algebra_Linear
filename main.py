@@ -9,9 +9,9 @@ print(a)
 
 proj2x = Transformations.projection2DX(a)
 proj2y = Transformations.projection2DY(a)
-proj3x = Transformations.projection3DZ(b)
+proj3x = Transformations.projection3DX(b)
 proj3y = Transformations.projection3DY(b)
-proj3z = Transformations.projection3DX(b)
+proj3z = Transformations.projection3DZ(b)
 
 print("============ 2D ============")
 print(proj2x)
