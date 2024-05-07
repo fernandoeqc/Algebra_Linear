@@ -2,6 +2,12 @@
 
 Implementação de algoritmos para operações com matrizes
 
+## Como executar a Interface grafica
+
+```sh
+python ui.py
+```
+
 #### Colaboração: 
 [Andressa Evelyn](https://github.com/Andressa-Evelyn)<br>
 [Fernando Carneiro](https://github.com/fernandoeqc)<br>
