@@ -1,6 +1,7 @@
 import unittest
 from algebra import Matrix, Vector, LinearAlgebra
 from transformation import Transformations
+from page_rank import PageRank
 
 
 class TestMatrix(unittest.TestCase):
@@ -423,6 +424,19 @@ class TestTransformations(unittest.TestCase):
             -2, 1, 0
         ])
 
+
+class TestPageRank(unittest.TestCase):
+    def test_center_vector(self):
+        A = Matrix(4, 4, [
+            0, 0, 1, 1,
+            1, 0, 0, 0,
+            1, 0, 0, 1,
+            1, 1, 1, 0
+        ])
+        result = PageRank.center_vector(A)
+        self.assertEqual(result.elements, [
+            2, 1, 2, 3
+        ])
 
 if __name__ == '__main__':
     unittest.main()
