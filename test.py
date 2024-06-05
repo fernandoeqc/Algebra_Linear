@@ -301,6 +301,18 @@ class TestLinearAlgebra(unittest.TestCase):
         self.assertAlmostEqual(result.get(1, 1), 2)
         self.assertAlmostEqual(result.get(2, 1), -2)
 
+    def test_norm(self):
+        A = Vector(4, [4, 4, 4, 4])
+        self.assertEqual(
+            LinearAlgebra.norm(A),
+            8
+        )
+        A = Vector(3, [4, 2, 4])
+        self.assertEqual(
+            LinearAlgebra.norm(A),
+            6
+        )
+
 
 class TestTransformations(unittest.TestCase):
     def test_rotation2D(self):

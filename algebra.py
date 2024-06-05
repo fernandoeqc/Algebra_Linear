@@ -1,3 +1,6 @@
+from math import sqrt
+
+
 class Vector:
     def __init__(self, dim: int, elements: list):
         self.dim = dim
@@ -250,3 +253,22 @@ class LinearAlgebra:
             solution.set(i, 1, ( A.get(i, n+1) - summation ) / A.get(i, i))
 
         return solution
+    
+    @staticmethod
+    def norm(A: Vector):
+        '''
+        Calcula a norma da vetor A
+        '''
+        total_sum = 0
+        for i in range(1, A.dim + 1):
+            total_sum += A.get(i) ** 2
+
+        return sqrt(total_sum)
+        
+
+    @staticmethod
+    def unit_vector(A):
+        '''
+        Calcula o vetor unitario de A
+        '''
+        pass
