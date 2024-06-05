@@ -240,3 +240,17 @@ class Transformations:
         homoMatrix = Transformations._cartesiana_to_homogenea(matrix)
         result = LinearAlgebra.dot(shearingMatrix, homoMatrix)
         return Transformations._homogenea_to_cartesiana(result)
+    
+    @staticmethod
+    def norm(A):
+        '''
+        Calcula a norma da matriz A
+        '''
+        pass
+
+    @staticmethod
+    def unit_vector(A):
+        '''
+        Calcula o vetor unitario de A
+        '''
+        pass
