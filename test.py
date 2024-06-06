@@ -314,6 +314,14 @@ class TestLinearAlgebra(unittest.TestCase):
             6
         )
 
+    def test_unit_vector(self):
+        A = Vector(4, [4, 4, 4, 4])
+        result = LinearAlgebra.unit_vector(A)
+        self.assertEqual(result.dim, 4)
+        self.assertEqual(
+            result.elements,
+            [0.5, 0.5, 0.5, 0.5]
+        )
 
 class TestTransformations(unittest.TestCase):
     def test_rotation2D(self):

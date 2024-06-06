@@ -267,8 +267,9 @@ class LinearAlgebra:
         
 
     @staticmethod
-    def unit_vector(A):
+    def unit_vector(A: Vector) -> Vector:
         '''
         Calcula o vetor unitario de A
         '''
-        pass
+        norm = 1 / LinearAlgebra.norm(A)
+        return LinearAlgebra.times(norm, A)
