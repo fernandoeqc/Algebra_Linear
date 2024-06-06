@@ -446,5 +446,17 @@ class TestPageRank(unittest.TestCase):
             2, 1, 2, 3
         ])
 
+    def test_authority_vector(self):
+        A = Matrix(4, 4, [
+            0, 0, 1, 1,
+            1, 0, 0, 0,
+            1, 0, 0, 1,
+            1, 1, 1, 0
+        ])
+        result = PageRank.authority_vector(A)
+        self.assertEqual(result.elements, [
+            3, 1, 2, 2
+        ])
+
 if __name__ == '__main__':
     unittest.main()

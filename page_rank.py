@@ -30,4 +30,12 @@ class PageRank:
         Calcula o vetor autoridade da matriz A
         O vetor autoridade é a soma de todos os elementos das colunas da matriz A
         '''
-        pass
+        result = Vector(A.cols, [0] * A.cols)
+        for j in range(1, A.cols + 1):
+            total_sum = 0
+            for i in range(1, A.rows + 1):
+                total_sum += A.get(i, j)
+
+            result.set(j, total_sum)
+        
+        return result
