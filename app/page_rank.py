@@ -1,34 +1,29 @@
-from algebra import Matrix, Vector, LinearAlgebra
-from transformation import Transformations
+from app.algebra import Matrix, Vector, LinearAlgebra
 
 class PageRank:
     @staticmethod
-    def run(self, A: Matrix):
+    def run(A: Matrix):
             
-        tolerance = 0.00001
+        tolerance = 0.0001
 
-        center_v = self.center_vector(A)
-        authority_v = self.authority_vector(A)
-        for i in 1024:
-            #para melhorar essa implementacao, talvez eu tenha que mexer no metodo dot depois
-            authority_v_matrix = Transformations._vector_to_matrix(authority_v)
-            u = LinearAlgebra.dot(A, authority_v_matrix)
-            u_norm = LinearAlgebra.norm(u)
-            authority_v = LinearAlgebra.unit_vector(u, u_norm)
+        a0 = PageRank.authority_vector(A)
+        for i in range(1000):
+            u = LinearAlgebra.dot(A, a0)
+
+            hn = LinearAlgebra.unit_vector(u)
             A_transpose = LinearAlgebra.transpose(A)
-            center_v_matrix = Transformations._vector_to_matrix(center_v)
-            v = LinearAlgebra.dot(A_transpose, center_v_matrix)
-            v_norm = LinearAlgebra.norm(v)
-            temp = LinearAlgebra.unit_vector(v, v_norm)
 
-            minus_temp = LinearAlgebra.times(-1, temp)
-            diff = LinearAlgebra.sum(authority_v, minus_temp)
+            v = LinearAlgebra.dot(A_transpose, hn)
+            an = LinearAlgebra.unit_vector(v)
 
-            if max(diff) <= tolerance:
-                result = authority_v
+            diff = abs(an - a0)
+
+            if max(diff.elements) <= tolerance:
+                result = a0
                 break
             else:
-                authority_v = temp
+                print(i, end='\r')
+                a0 = an
 
         return result
     

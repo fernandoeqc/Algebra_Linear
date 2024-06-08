@@ -1,5 +1,5 @@
 import math
-from algebra import *
+from app.algebra import *
 
 
 class Transformations:

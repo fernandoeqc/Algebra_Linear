@@ -1,23 +1,21 @@
-from transformation import *
-
-a = Vector(2, [2,1])
-b = Vector(3, [-2, 1, 3])
+from app.algebra import Matrix, Vector, LinearAlgebra
+from app.page_rank import PageRank
 
 
-print(a)
+A = Matrix(4, 4, [
+    0, 0, 1, 1,
+    1, 0, 0, 0,
+    1, 0, 0, 1,
+    1, 1, 1, 0,
+])
 
+# A = Matrix(2, 2, [
+#     1, 3,
+#     2, -5
+# ])
 
-proj2x = Transformations.projection2DX(a)
-proj2y = Transformations.projection2DY(a)
-proj3x = Transformations.projection3DX(b)
-proj3y = Transformations.projection3DY(b)
-proj3z = Transformations.projection3DZ(b)
+# b = Matrix(2, 1, [5, 2])
 
-print("============ 2D ============")
-print(proj2x)
-print(proj2y)
-print("============ 3D ============")
-print(proj3x)
-print(proj3y)
-print(proj3z)
+print(PageRank.run(A))
+# print(LinearAlgebra.dot(A, b))
 

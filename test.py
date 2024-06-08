@@ -1,7 +1,7 @@
 import unittest
-from algebra import Matrix, Vector, LinearAlgebra
-from transformation import Transformations
-from page_rank import PageRank
+from app.algebra import Matrix, Vector, LinearAlgebra
+from app.transformation import Transformations
+from app.page_rank import PageRank
 
 
 class TestMatrix(unittest.TestCase):
@@ -280,6 +280,55 @@ class TestLinearAlgebra(unittest.TestCase):
         self.assertSequenceEqual(result.elements, [
             22, 28,
             49, 64
+        ])
+
+        first = Matrix(2, 2, [
+            1, 3,
+            2, -5
+        ])
+        second = Matrix(2, 1, [5, 2])
+
+        result = LinearAlgebra.dot(first, second)
+        self.assertEqual(result.rows, 2)
+        self.assertEqual(result.cols, 1)
+        self.assertSequenceEqual(result.elements, [
+            11, 0
+        ])
+
+    def test_dot_matrix_vector(self):
+        first = Matrix(2, 2, [
+            1, 3,
+            2, -5
+        ])
+        second = Vector(2, [5, 2])
+
+        result = LinearAlgebra.dot(first, second)
+        self.assertEqual(result.dim, 2)
+        self.assertSequenceEqual(result.elements, [
+            11, 0
+        ])
+
+        first = Matrix(2, 3, [
+	    	1, 3, 2,
+            4, 1, 3
+        ])
+        second = Vector(3, [5, 2, 2])
+
+        result = LinearAlgebra.dot(first, second)
+        self.assertEqual(result.dim, 2)
+        self.assertSequenceEqual(result.elements, [
+            15, 28
+        ])
+
+        first = Matrix(1, 2, [
+	    	1, 3
+        ])
+        second = Vector(2, [5, 2])
+
+        result = LinearAlgebra.dot(first, second)
+        self.assertEqual(result.dim, 1)
+        self.assertSequenceEqual(result.elements, [
+            11
         ])
 
     def test_gauss(self):

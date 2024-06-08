@@ -16,6 +16,15 @@ class Vector:
 
     def __str__(self):
         return str(self.elements)
+    
+    def __abs__(self):
+        return Vector(self.dim, [abs(value) for value in self.elements])
+    
+    def __add__(self, other):
+        return LinearAlgebra.sum(self, other)
+    
+    def __sub__(self, other):
+        return self + LinearAlgebra.times(-1, other)
 
 
 class Matrix:
@@ -158,7 +167,7 @@ class LinearAlgebra:
         raise Exception("o parâmetro 'a' precisa ser uma matriz")
         
     @staticmethod
-    def dot(A: Matrix, B: Matrix):
+    def dot(A: Matrix, B):
         """
         Multiplica duas matrizes.
         Considerando A(m.n) e B(n.p), e C(m.p)
@@ -168,11 +177,13 @@ class LinearAlgebra:
         :return: Uma matriz resultante da multiplicação.
         """
 
+        if isinstance(B, Vector):
+            return LinearAlgebra.dot_matrix_by_vector(A, B)
+
         #Confere validade da multiplicação
         if A.cols != B.rows:
-            print("Não é possível multiplicar as matrizes AxB! \
+            raise Exception("Não é possível multiplicar as matrizes AxB! \
                 \nA quantidade de colunas em A: (", A.cols, ") é diferente da quantidade de linhas em B: (", B.rows, ")")
-            return []
         C = Matrix(A.rows, B.cols, ([0] * A.rows *B.cols)) # Cria uma matriz nula
 
         # Faz o somatório
@@ -182,6 +193,21 @@ class LinearAlgebra:
                     # print("A{}{} {} * B{}{} {}".format(i, j, A.get(i, j), i, j, B.get(i, j)))
                     summation = C.get(i, k) + A.get(i, j) * B.get(j, k)
                     C.set(i, k, summation)
+        return C
+    
+    @staticmethod
+    def dot_matrix_by_vector(A: Matrix, B: Vector):
+        #Confere validade da multiplicação
+        if A.cols != B.dim:
+            raise Exception("Não é possível multiplicar as matrizes AxB! \
+                \nA quantidade de colunas em A: (" + str(A.cols) + ") é diferente da quantidade de linhas em B: (" + str(B.dim) + ")")
+        C = Vector(A.rows, [0] * A.rows) # Cria um vetor nula
+
+        # Faz o somatório
+        for i in range(1, A.rows+1): #start in 1
+            for j in range(1, A.cols+1): #start in 1
+                summation = C.get(i) + A.get(i, j) * B.get(j)
+                C.set(i, summation)
         return C
 
     @staticmethod

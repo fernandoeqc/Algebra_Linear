@@ -1,11 +1,8 @@
 from tkinter import *
 from tkinter import ttk
-from algebra import *
-from transformation import *
-
-
-font_label_config = ('Consolas', 22)
-font_field_config = ('Consolas', 18)
+from app.algebra import *
+from ..transformation import *
+from .styles import font_field_config, font_label_config
 
 
 def GenericOperation2D(root: Widget, handler):
