@@ -17,12 +17,12 @@ class PageRank:
             an = LinearAlgebra.unit_vector(v)
 
             diff = abs(an - a0)
+            max_diff = round(max(diff.elements), 7)
 
-            if max(diff.elements) <= tolerance:
-                result = a0
+            if max_diff <= tolerance:
+                result = an
                 break
             else:
-                print(i, end='\r')
                 a0 = an
 
         return result
