@@ -29,7 +29,7 @@ def InputShape(master, create_matrix, run_page_rank):
     return frame
 
 
-def MainScreen(master):
+def PageRankScreen(master):
     frame = ttk.Frame(master)
 
     matrix_frame_input = ttk.Frame(frame)
@@ -74,7 +74,7 @@ def MainScreen(master):
     input_shape_frame = InputShape(frame, create_matrix, run_page_rank)
     input_shape_frame.grid(column=0, row=0)
 
-    frame.pack()
+    frame.pack(fill='both', expand=True)
     return frame
 
 
@@ -83,7 +83,7 @@ def build_app():
     root.title('Algebra Linear')
     root.geometry('600x350')
 
-    MainScreen(root)
+    PageRankScreen(root)
 
     root.mainloop()
 
