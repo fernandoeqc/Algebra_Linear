@@ -5,7 +5,7 @@ Implementação de algoritmos para operações com matrizes
 ## Como executar a Interface grafica
 
 ```sh
-python ui.py
+python __init__.py
 ```
 
 #### Colaboração: 
