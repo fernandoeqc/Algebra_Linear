@@ -5,8 +5,8 @@
 
 
 # use('TkAgg')
-font_label_config = ('Consolas', 22)
-font_field_config = ('Consolas', 18)
+font_label_config = ('Consolas', 18)
+font_field_config = ('Consolas', 16)
 
 # def LatexComponent(master, text):
 #     fig = Figure(figsize=(5, 4), dpi=100)
