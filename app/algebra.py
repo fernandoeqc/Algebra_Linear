@@ -15,7 +15,18 @@ class Vector:
         self.elements[i - 1] = value
 
     def __str__(self):
-        return str(self.elements)
+        max_elements_size = max([len(str(item)) for item in self.elements])
+        content = ''
+        content += ('-' * max_elements_size) + '--'
+        content += '\n'
+        for row in self.elements:
+            content += '|'
+            str_row = str(row)
+            content += str_row.rjust(max_elements_size)
+            content += '|\n'
+
+        content += ('-' * max_elements_size) + '--'
+        return content
     
     def __abs__(self):
         return Vector(self.dim, [abs(value) for value in self.elements])
